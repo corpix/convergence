@@ -2,6 +2,10 @@ var path = require('path');
 var assert = require('assert');
 var app = require('./main');
 
+function sanitizeLevel(s) {
+    return (s || '').replace(/\/$/, '');
+}
+
 function main(argv) {
     var args = require('minimist')(argv.slice(2));
     var res = {_: args._};
@@ -17,6 +21,7 @@ function main(argv) {
         res.levels = [res.levels];
     }
     assert(Array.isArray(res.levels), 'Levels should be a list of strings');
+    res.levels = res.levels.map(sanitizeLevel);
 
     return app.main(res);
 }

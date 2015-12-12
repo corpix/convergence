@@ -1,13 +1,14 @@
 var walker = require('./walker');
 var bemdecl = require('./bemdecl');
-var _ = require('lodash');
 
 function main(args) {
-    var decls = _([]).concat(args._.map(bemdecl.load)).value();
-    console.log(decls);
+    var decls = args._.map(bemdecl.load);
+    var flatDecls = [];
+    flatDecls = flatDecls.concat.apply(flatDecls, decls);
     return walker.listEntities(args.levels)
         .then(
             function(entities) {
+                console.log(flatDecls);
                 console.log(entities);
             },
             console.error
