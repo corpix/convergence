@@ -18,6 +18,8 @@ function main(argv) {
     }
     if (args._.length === 0) {
         usage(1);
+    } else {
+        res.decls = args._;
     }
 
     res.levels = args.l || args.levels;
