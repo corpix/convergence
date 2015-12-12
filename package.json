@@ -12,7 +12,7 @@
   "dependencies": {
     "bem-decl": "git://github.com/bem/bem-decl.git",
     "bem-walk": "0.0.4",
-    "lodash": "^3.10.1",
-    "minimist": "^1.2.0"
+    "docopt": "^0.6.2",
+    "lodash": "^3.10.1"
   }
 }
