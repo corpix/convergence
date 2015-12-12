@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+// -*- mode: js2; coding: utf-8 -*-
+
+require('../src/cli')
+    .main(process.argv)
+    .then(
+        process.exit.bind(process, 0),
+        console.error
+    );

@@ -1,8 +1,4 @@
 var walk = require('bem-walk');
-var levels = [
-    'libs/bem-core/common.blocks',
-];
-
 
 function listEntities(levels) {
     return new Promise(function(resolve, reject) {
@@ -22,10 +18,6 @@ function listEntities(levels) {
     });
 }
 
-listEntities(levels)
-    .then(
-        function(entities) {
-            console.log(entities);
-        },
-        console.error
-    );
+module.exports = {
+    listEntities: listEntities
+};
