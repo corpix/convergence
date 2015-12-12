@@ -6,6 +6,10 @@ function sanitizeLevel(s) {
     return (s || '').replace(/\/$/, '');
 }
 
+function logJSON(d) {
+    console.log(JSON.stringify(d));
+}
+
 function main(argv) {
     var args = require('minimist')(argv.slice(2));
     var res = {_: args._};
@@ -23,7 +27,7 @@ function main(argv) {
     assert(Array.isArray(res.levels), 'Levels should be a list of strings');
     res.levels = res.levels.map(sanitizeLevel);
 
-    return app.main(res);
+    return app.main(res).then(logJSON);
 }
 
 function usage(exitCode) {
