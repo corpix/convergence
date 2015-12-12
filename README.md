@@ -7,7 +7,7 @@ Tool and library to intersect entities from `bemdecl.js` with entities from BEM 
 npm install git://github.com/corpix/convergence.git
 ```
 
-Use example on https://github.com/bem/project-stub:
+Usage example on https://github.com/bem/project-stub:
 ```console
 $ cd project-stub
 $ node_modules/.bin/convergence -l libs/bem-components/desktop.blocks desktop.bundles/index/index.bemdecl.js  | jq '.[] | select(.tech == "js")'
