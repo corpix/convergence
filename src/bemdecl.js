@@ -1,5 +1,6 @@
 var path = require('path');
 var decl = require('bem-decl');
+var _ = require('lodash');
 
 function load(p) {
     var rp = path.resolve(p);
@@ -51,6 +52,10 @@ function intersect() {
                 if(set[finger].owner !== i) {
                     set[finger].counter++;
                     set[finger].owner = i;
+                    set[finger].node = _.merge(
+                        set[finger].node,
+                        node
+                    );
                 }
             }
         }
