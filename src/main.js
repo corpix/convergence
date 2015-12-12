@@ -15,6 +15,4 @@ function main(args) {
         );
 }
 
-module.exports = {
-    main: main
-};
+module.exports = main;

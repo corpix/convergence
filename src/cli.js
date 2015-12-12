@@ -31,7 +31,7 @@ function main(argv) {
     params.levels = args['<levels>'].map(sanitizeLevel);
     params.decls = args['<decls>'];
 
-    return app.main(params).then(logJSON);
+    return app(params).then(logJSON);
 }
 
 module.exports = {
