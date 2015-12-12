@@ -14,7 +14,7 @@ function load(p) {
     return decl.normalize(res);
 }
 
-function nodeFingerprint(node) {
+function fingerprint(node) {
     return JSON.stringify([
         node.block,
         node.modName,
@@ -23,55 +23,21 @@ function nodeFingerprint(node) {
     ]);
 }
 
-function isSame(a, b) {
-    return nodeFingerprint(a) === nodeFingerprint(b);
+function same(a, b) {
+    return fingerprint(a) === fingerprint(b);
 }
 
-function intersect() {
-    var decl, nextDecl;
-    var i, j, dl;
-    var set = {};
-    var keys = [];
-    var finger;
-    var node;
-    var args = arguments;
-    var argsLen = args.length;
-    for (i = 0; i < argsLen; ++i) {
-        decl = args[i];
-        for (j = 0, dl = decl.length; j < dl; ++j) {
-            node = decl[j];
-            finger = nodeFingerprint(node);
-            if (!set[finger]) {
-                set[finger] = {
-                    counter: 1,
-                    owner: i,
-                    node: node
-                };
-                keys.push(finger);
-            } else {
-                if(set[finger].owner !== i) {
-                    set[finger].counter++;
-                    set[finger].owner = i;
-                    set[finger].node = _.merge(
-                        set[finger].node,
-                        node
-                    );
-                }
-            }
-        }
-    }
+function intersect(bemdecl, entities) {
+    var bemdeclNodes = _.groupBy(bemdecl, fingerprint);
+    var entityNodes = _.groupBy(entities, fingerprint);
+    var intersectedFingers = _.intersection(
+        _.keys(bemdeclNodes),
+        _.keys(entityNodes)
+    );
 
-    var res = keys
-            .map(function(key) {
-                return set[key];
-            })
-            .filter(function(setItem) {
-                return setItem.counter > 1;
-            })
-            .map(function(setItem) {
-                return setItem.node;
-            });
-    return res;
+    return _.reduce(intersectedFingers, function(res, k) {
+        return res.concat(entityNodes[k]);
+    }, []);
 }
 
 module.exports = {
