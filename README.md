@@ -1,7 +1,7 @@
 convergence
 ------------
 
-Tool and library to intersect entities from `bemdecl.js` with entities from BEM levels on filesystems.
+Tool and library to intersect entities from `bemdecl.js` with entities from BEM levels on filesystem.
 
 ```
 npm install git://github.com/corpix/convergence.git
