@@ -27,7 +27,9 @@ function same(a, b) {
 
 function intersect(bemdecl, entities) {
     var bemdeclNodes = _.groupBy(bemdecl, fingerprint);
-    var entityNodes = _.groupBy(entities, fingerprint);
+    var entityNodes = _.groupBy(entities, function(x) {
+        return fingerprint(x.entity);
+    });
     var intersectedFingers = _.intersection(
         _.keys(bemdeclNodes),
         _.keys(entityNodes)
