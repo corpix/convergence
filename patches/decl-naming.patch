@@ -1,0 +1,22 @@
+diff --git a/node_modules/bem-decl/lib/normalize.js b/node_modules/bem-decl/lib/normalize.js
+index adbc846..fe6a5eb 100644
+--- a/node_modules/bem-decl/lib/normalize.js
++++ b/node_modules/bem-decl/lib/normalize.js
+@@ -19,7 +19,7 @@ module.exports = function (decl) {
+ 
+     for (var i = 0; i < decl.length; ++i) {
+         var entity = decl[i],
+-            block = entity.name,
++            block = entity.name || entity.block,
+             mods = entity.mods,
+             elems = entity.elems;
+ 
+@@ -32,7 +32,7 @@ module.exports = function (decl) {
+         if (elems) {
+             for (var j = 0; j < elems.length; ++j) {
+                 var elem = elems[j],
+-                    elemName = elem.name,
++                    elemName = elem.name || elem.elem,
+                     elemMods = elem.mods;
+ 
+                 add({ block: block, elem: elemName });
