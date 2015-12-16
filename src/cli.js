@@ -6,10 +6,13 @@ var app = require('./main');
 
 var cli = [
     'Usage:',
-    '  convergence (-l <levels>|--levels <levels>...) <decls>...',
+    '  convergence (-l <levels>)... [options] <decls>...',
     '',
-    '    -l <levels>, --levels <levels> is a path to BEM level',
-    '    <decls>                        is a path to BEM decl file',
+    'Options:',
+    '    -l <levels>, --levels <levels>   is a path to BEM level',
+    '    -t <declsType>, --type <declsType> BEM decl format, simple or harmony [default: simple]',
+    'Arguments:',
+    '    <decls>                          is a path to BEM decl file',
     ''
 ].join('\n');
 
@@ -28,10 +31,11 @@ function main(argv) {
     });
 
     var params = {};
-    params.levels = args['<levels>'].map(sanitizeLevel);
+    params.levels = args['--levels'].map(sanitizeLevel);
     params.decls = args['<decls>'];
+    params.declsType = args['--type'];
 
-    return app(params).then(logJSON);
+    return app(params).then(logJSON, console.error);
 }
 
 module.exports = {

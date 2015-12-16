@@ -2,7 +2,9 @@ var walker = require('./walker');
 var bemdecl = require('./bemdecl');
 
 function main(args) {
-    var decls = args.decls.map(bemdecl.load);
+    var decls = args.decls.map(function(x) {
+        return bemdecl.load(x, args.declsType);
+    });
     var flatDecls = [];
     flatDecls = flatDecls.concat.apply(flatDecls, decls);
 
