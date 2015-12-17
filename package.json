@@ -11,7 +11,7 @@
   "license": "GPL",
   "dependencies": {
     "bem-decl": "git://github.com/bem/bem-decl.git",
-    "bem-walk": "0.0.4",
+    "bem-walk": "git://github.com/bem/bem-walk.git",
     "docopt": "^0.6.2",
     "lodash": "^3.10.1"
   }
