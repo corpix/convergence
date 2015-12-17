@@ -7,7 +7,7 @@ function load(p, t) {
     var content = require(rp);
     var res = null;
     return decl.normalize(
-        content && content.deps,
+        content && (content.deps || content.blocks),
         {harmony: t === 'harmony'}
     );
 }
